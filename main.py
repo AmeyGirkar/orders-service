@@ -1,11 +1,16 @@
 from fastapi import FastAPI
 import uvicorn
 
+import os
+
 app = FastAPI(title="Orders Service")
+
+# Placeholder for PostgreSQL connection
+DB_URL = os.getenv("DB_URL", "postgresql://localhost:5432/orders")
 
 @app.get("/")
 def read_root():
-    return {"service": "Orders Service", "status": "running"}
+    return {"service": "Orders Service", "status": "running", "database": "PostgreSQL"}
 
 @app.get("/orders")
 def get_orders():
